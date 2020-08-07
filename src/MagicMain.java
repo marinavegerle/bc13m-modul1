@@ -5,6 +5,7 @@ public class MagicMain {
     }
 
     public static void simpleIf(String arg) {
+        
 
 
     }
