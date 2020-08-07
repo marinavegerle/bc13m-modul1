@@ -1,5 +1,7 @@
 package lesson33;
 
+import java.util.Arrays;
+
 public class HW32Array {
     public static void main(String[] args) {
 
@@ -11,7 +13,6 @@ public class HW32Array {
         myArrayPrint(midThree(k1));// → [2, 3, 4]
         myArrayPrint(midThree(k2));// → [7, 5, 3]
         myArrayPrint(midThree(k3));// → [1, 2, 3]
-
 
 
         // We'll say that a 1 immediately followed by a 3 in an array is an "unlucky" 1.
@@ -52,6 +53,80 @@ public class HW32Array {
         myArrayPrint(maxEnd3(gf2)); //→ [11, 11, 11]
         myArrayPrint(maxEnd3(gf3)); //→ [3, 3, 3]
 
+        /*Given an int array, return a new array with double the length where its
+        last element is the same as the original array, and all the other elements are 0.
+        The original array will be length 1 or more. Note: by default, a new int array contains all 0's.*/
+        int[] x1 = new int[]{4, 5, 6};
+        int[] x2 = new int[]{1, 2};
+        int[] x3 = new int[]{3};
+        myArrayPrint(makeLast(x1));// → [0, 0, 0, 0, 0, 6]
+        myArrayPrint(makeLast(x2));// → [0, 0, 0, 2]
+        myArrayPrint(makeLast(x3));//→ [0, 3]
+
+        //  Start with 2 int arrays, a and b, of any length.
+        //  Return how many of the arrays have 1 as their first element.
+        int[] ef1 = new int[]{1, 2, 3};
+        int[] ef2 = new int[]{1, 3};
+        int[] efx1 = new int[]{7, 2, 3};
+        int[] efx2 = new int[]{1};
+        int[] fx1 = new int[]{1, 2};
+        int[] fx2 = new int[]{};
+        System.out.println(start1(ef1, ef2));// →2
+        System.out.println(start1(efx1, efx2));// →1
+        System.out.println(start1(fx1, fx2));// →1
+
+        int[] cd1 = new int[]{1, 2};
+        int[] cd2 = new int[]{3, 4};
+        int[] cd3 = new int[]{4, 4};
+        int[] cd4 = new int[]{2, 2};
+        int[] cd5 = new int[]{9, 2};
+        int[] cd6 = new int[]{3, 4};
+
+        System.out.println(Arrays.toString(plusTwoSimple(cd1, cd2)));// → [1, 2, 3, 4]
+        System.out.println(Arrays.toString(plusTwoSimple(cd3, cd4)));// → [4,4,2,2 ]
+        System.out.println(Arrays.toString(plusTwoSimple(cd5, cd6)));// → [9, 2, 3, 4]
+
+        System.out.println(Arrays.toString(plusTwo(cd1, cd2)));// → [1, 2, 3, 4]
+        System.out.println(Arrays.toString(plusTwo(cd3, cd4)));// → [4,4,2,2 ]
+        System.out.println(Arrays.toString(plusTwo(cd5, cd6)));// → [9, 2, 3, 4]
+    }
+
+    public static int[] plusTwo(int[] c, int[] d) {
+        int[] output = new int[c.length + d.length];
+        for (int i = 0; i < c.length; i++) {
+            output[i] = c[i];
+        }
+        for (int i = 0; i < d.length; i++) {
+            output[i + c.length] = d[i];
+        }
+        return output;
+    }
+
+    public static int[] plusTwoSimple(int[] c, int[] d) {
+        int[] output = new int[4];
+        output[0] = c[0];
+        output[1] = c[1];
+        output[2] = d[0];
+        output[3] = d[1];
+
+        return output;
+    }
+
+    private static int start1(int[] a, int[] b) {
+        int count = 0;
+        if (a.length > 0 && a[0] == 1) {
+            count++;
+        }
+        if (b.length > 0 && b[0] == 1) {
+            count++;
+        }
+        return count;
+    }
+
+    private static int[] makeLast(int[] array) {
+        int[] output = new int[array.length * 2];
+        output[output.length - 1] = array[array.length - 1];
+        return output;
     }
 
     private static int[] maxEnd3(int[] array) {
